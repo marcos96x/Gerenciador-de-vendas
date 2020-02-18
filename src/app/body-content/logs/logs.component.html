@@ -1,0 +1,74 @@
+<div class="container animated fadeInUp">
+    <div class="row z-depth-2">
+        <h4>Relatório de vendas</h4>
+
+        <div class="row">
+            <button *ngFor="let log of logs" class="btn black" (click)="verLogs(log.title)">{{ log.title }}</button>
+            &nbsp;
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col s12">
+                <h5>Produtos em falta (Geral)</h5>
+            </div>
+            <div class="col s12">
+                <table class="highlight centered responsive-table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Quantidade</th>
+                        </tr>
+                    </thead>
+
+                    <tbody *ngFor="let produto of produtosFalta">
+                        <tr>
+                            <td>{{ produto.id }}</td>
+                            <td>{{ produto.name }}</td>
+                            <td>{{ produto.qtd }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr>
+        <div *ngIf="mostraLogs">
+            <div class="row">
+                <div class="col s6">
+                    <h5>Total arrecadado</h5>
+                </div>
+                <div class="col s6">
+                    <h5>R${{ totalVendido.toFixed(2) }}</h5>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col s12">
+                    <h5>Todas as vendas</h5>
+                </div>     
+                <div class="col s12" *ngFor="let vendas of vendasDia" >
+                    <table class="highlight centered responsive-table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Preço</th>
+                                <th>Quantidade</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>                    
+                        <tbody *ngFor="let produtox of vendas.vendasEfetuadas" >
+                            <tr *ngFor="let produto of produtox" >
+                                    <td>{{produto.name}}</td>
+                                    <td>{{produto.price}}</td>
+                                    <td>{{produto.qtd}}</td>
+                                    <td>{{ (produto.price * produto.qtd).toFixed(2) }}</td>                                                             
+                            </tr>
+                        </tbody>
+                    </table>
+                    Total: R${{ vendas.valorTotalArrecadado.toFixed(2) }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

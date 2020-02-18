@@ -1,0 +1,7 @@
+<div class="container">
+    <div class="row center-align">
+        <app-estoque *ngIf="navigation === 'estoque'"></app-estoque>
+        <app-venda *ngIf="navigation === 'venda'" ></app-venda>
+        <app-logs *ngIf="navigation === 'relatorio'" ></app-logs>
+    </div>
+</div>

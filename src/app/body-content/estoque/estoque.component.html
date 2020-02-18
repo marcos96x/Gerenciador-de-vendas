@@ -1,0 +1,81 @@
+<div class="row z-depth-2 animated fadeInUp">
+    <h4>Seus produtos</h4>
+    <div [class]="alertClass">{{ alertMessage }}</div>
+    <div class="row">
+        <div class="col s6">
+            <br>
+            <a class="btn green white-text" (click)="addNewProductModal()">Adicionar novo produto</a>
+        </div>
+        <div class="col s6">
+            <div class="input-field">
+                <i class="material-icons prefix">search</i>
+                <input id="searchProduct" type="text" class="validate" [value]="searchText" (keyup)="handleSearchField($event)">
+                <label for="searchProduct">Pesquise por um produto</label>
+            </div>
+        </div>
+
+        <div *ngIf="addProductModal" class="animated {{ classModal }} col s12" >
+            <div class="col s12">
+                <hr>
+                <h4>Adicionar um novo produto</h4>
+                <div class="col s4">
+                    <input type="text" id="newProductName" [value]="newProduct.name" (change)="handleNewProduct($event, 'name')">
+                    <label for="newProductName">Nome do produto</label>
+                </div>
+                <div class="col s4">
+                    <input type="number" id="newProductPrice" [value]="newProduct.price" (change)="handleNewProduct($event, 'price')">
+                    <label for="newProductPrice">Valor</label>
+                </div>
+                <div class="col s4">
+                    <input type="number" id="newProductQtd" [value]="newProduct.qtd" (change)="handleNewProduct($event, 'qtd')">
+                    <label for="qtdProductName">Quantidade</label>
+                </div>
+            </div>
+            <br>
+            <a class="waves-effect waves-white btn green" (click)="addNewProduct()">Adicionar</a>
+            <hr>
+        </div>        
+    </div>
+    <table class="highlight centered responsive-table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Quantidade em estoque</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+    
+        <tbody>
+            <tr *ngFor="let produto of produtos" >
+                <td>{{ produto.id }}</td>
+                <td>{{ produto.name }}</td>
+                <td>R${{ produto.price }}</td>
+                <td>{{ produto.qtd }}</td>
+                <td>
+                    <div class="col s3">
+                        <input type="number" id="removeProduto{{ produto.id }}" (change)="handleAddOrRemoveItens($event, 'remove')">
+                        <label for="removeProduto{{ produto.id }}">Remover itens</label>
+                    </div>
+                    <div class="col s2">
+                        <button class="btn red btn-floating tooltipped" data-position="bottom"
+                        data-tooltip="Remova alguns deste produto" (click)="removeQtdItem(produto.id)"><i class="material-icons small">remove</i></button>
+                    </div>
+                    <div class="col s3">
+                        <input type="number" id="adicionaProduto{{ produto.id }}" (change)="handleAddOrRemoveItens($event, 'add')">
+                        <label for="adicionaProduto{{ produto.id }}">Adicionar itens</label>
+                    </div>
+                    <div class="col s2">
+                        <button class="btn green btn-floating tooltipped" data-position="bottom"
+                        data-tooltip="Adicione alguns deste produto" (click)="addQtdItem(produto.id)"><i class="material-icons small">add</i></button>
+                    </div>
+                    <div class="col s2">
+                        <button class="btn red btn-floating tooltipped" data-position="bottom"
+                        data-tooltip="Delete este produto" (click)="delete(produto.id)"><i class="material-icons small">delete</i></button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

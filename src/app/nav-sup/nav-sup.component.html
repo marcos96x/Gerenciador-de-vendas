@@ -1,0 +1,20 @@
+<nav>
+  <div class="nav-wrapper blue">
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul id="nav-mobile" class="left hide-on-med-and-down">
+      <li [class.active]="navegacao === 'estoque'"><a href="#" (click)="someNavigation('estoque')">Gerenciar estoque</a>
+      </li>
+      <li [class.active]="navegacao === 'venda'"><a href="#" (click)="someNavigation('venda')">Realizar venda</a></li>
+      <li [class.active]="navegacao === 'relatorio'"><a href="#" (click)="someNavigation('relatorio')">Visualizar
+          relatórios</a></li>
+    </ul>
+  </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+  <li [class.active]="navegacao === 'estoque'"><a href="#!" (click)="someNavigation('estoque')">Gerenciar estoque</a>
+  </li>
+  <li [class.active]="navegacao === 'venda'"><a href="#!" (click)="someNavigation('venda')">Realizar venda</a></li>
+  <li [class.active]="navegacao === 'relatorio'"><a href="#!" (click)="someNavigation('relatorio')">Visualizar
+      relatórios</a></li>
+</ul>

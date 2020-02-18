@@ -1,0 +1,40 @@
+<div class="row z-depth-2 animated fadeInUp">
+    <h4>Realizar uma venda</h4>
+    <div [class]="alertClass">{{ alertMessage }}</div>
+
+    <div class="container">
+        <div class="row" *ngFor="let produto of produtosVenda" >
+            <div class="input-field col s4">
+                <input type="number" placeholder="Id do produto" id="productId" class="validate" [value]="produto.id" (keyup)="handleId($event)">
+            </div>
+
+            <div class="input-field col s4">
+                <input type="text" placeholder="Nome do produto" id="productName" class="validate" readonly [value]="produto.name">
+            </div>
+
+            <div class="input-field col s4">
+                <input type="number" id="productQtd" class="validate" placeholder="Quantidade" (keyup)="handleQtd($event)">
+            </div>
+        </div>
+
+        <div class="row">
+            <hr>
+            <div class="col s6">
+                <h5>
+                    Total: R${{ totalVenda.toFixed(2) }}
+                </h5>
+            </div>
+            <div class="col s6">        
+                <br>        
+                <button class="btn blue" (click)="addItem()">Adicionar item</button>
+                <button class="btn green" (click)="finalizaVenda()">Finalizar compra</button>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="vendaFinalizada" >
+            <h4>Tem certeza que deseja finalizar a venda?</h4>
+
+            <button class="btn green" (click)="logEmmit()">Sim</button>
+        </div>
+    </div>
+</div>
